@@ -4,18 +4,18 @@ import java.util.Objects;
 public class Course {
 
 	private String name;
-	private int duration;
+	private int months;
 	private int fees;
 	private LocalDate startDate;
 
-	public Course(String name, int duration, int fees, LocalDate startDate) {
+	public Course(String name, int months, int fees, LocalDate startDate) {
 		super();
 		this.name = name;
-		this.duration = duration;
+		this.months = months;
 		this.fees = fees;
 		this.startDate = startDate;
 	}
-
+	
 	public String getName() {
 		return name;
 	}
@@ -24,12 +24,12 @@ public class Course {
 		this.name = name;
 	}
 
-	public int getDuration() {
-		return duration;
+	public int getMonths() {
+		return months;
 	}
 
-	public void setDuration(int duration) {
-		this.duration = duration;
+	public void setMonths(int months) {
+		this.months = months;
 	}
 
 	public int getFees() {
@@ -50,7 +50,7 @@ public class Course {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(duration, fees, name, startDate);
+		return Objects.hash(months, fees, name, startDate);
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class Course {
 		if (getClass() != obj.getClass())
 			return false;
 		Course other = (Course) obj;
-		return duration == other.duration && fees == other.fees && Objects.equals(name, other.name)
+		return months == other.months && fees == other.fees && Objects.equals(name, other.name)
 				&& Objects.equals(startDate, other.startDate);
 	}
 

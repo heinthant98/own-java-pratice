@@ -1,18 +1,20 @@
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Student {
 
 	private String name;
-	private Course course;
+	private List<Course> course;
 	private int age;
-	private String foundation;
+	private List<String> basicKnowledge;
 
-	public Student(String name, Course course, int age, String foundation) {
+	public Student(String name, List<Course> course, int age, List<String> basicKnowledge) {
 		super();
 		this.name = name;
 		this.course = course;
 		this.age = age;
-		this.foundation = foundation;
+		this.basicKnowledge = basicKnowledge;
 	}
 
 	public String getName() {
@@ -23,11 +25,11 @@ public class Student {
 		this.name = name;
 	}
 
-	public Course getCourse() {
+	public List<Course> getCourse() {
 		return course;
 	}
 
-	public void setCourse(Course course) {
+	public void setCourse(List<Course> course) {
 		this.course = course;
 	}
 
@@ -39,17 +41,21 @@ public class Student {
 		this.age = age;
 	}
 
-	public String getFoundation() {
-		return foundation;
+	public List<String> getBasicKnowledge() {
+		return basicKnowledge;
 	}
 
-	public void setFoundation(String foundation) {
-		this.foundation = foundation;
+	public void setBasicKnowledge(List<String> basicKnowledge) {
+		this.basicKnowledge = basicKnowledge;
+	}
+	
+	public String getCourseName(List<Course> course) {
+		return course.stream().map(Course::getName).collect(Collectors.joining("、"));
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(age, course, foundation, name);
+		return Objects.hash(age, course, basicKnowledge, name);
 	}
 
 	@Override
@@ -61,7 +67,7 @@ public class Student {
 		if (getClass() != obj.getClass())
 			return false;
 		Student other = (Student) obj;
-		return age == other.age && Objects.equals(course, other.course) && Objects.equals(foundation, other.foundation)
+		return age == other.age && Objects.equals(course, other.course) && Objects.equals(basicKnowledge, other.basicKnowledge)
 				&& Objects.equals(name, other.name);
 	}
 
