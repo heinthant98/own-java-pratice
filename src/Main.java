@@ -11,11 +11,10 @@ public class Main {
 	public static void main(String[] args) {
 		DecimalFormat format = new DecimalFormat("#,###");
 		Set<Course> courses = new HashSet<Course>();
-		students.stream().map(Student::getCourse).forEach(s -> courses.add((s.get(0))));
+		students.stream().map(Student::getCourses).forEach(s -> courses.add((s.get(0))));
 
 		System.out.println("===すべての学生を表示する===");
-		students.forEach(s -> System.out.println("生徒の名前： %s、コース：　%sを取っています。".formatted(s.getName(),
-						 s.getCourseName(s.getCourse()))));
+		students.forEach(s -> System.out.println("生徒の名前： %s、コース：　%sを取っています。".formatted(s.getName(), s.getCoursesName(s.getCourses()))));
 
 		System.out.println("===すべてのコースを表示する===");
 		courses.forEach(c -> System.out.println("コースの名前 : %s, 期間 : %dヶ月間。".formatted(c.getName(), c.getMonths())));
@@ -25,36 +24,34 @@ public class Main {
 				.forEach(c -> System.out.println("%s　コースの料金は %sチャットです。".formatted(c.getName(), format.format(c.getFees()))));
 
 		System.out.println("===コースの開始日と終了日を表示する===");
-		courses.forEach(c -> System.out.println("%sコースの開始日は　%sで、終了日は %sです。".formatted(c.getName(),
-				c.getStartDate(), calculateMonths(c.getStartDate(), c.getMonths()))));
+		courses.forEach(c -> System.out.println("%sコースの開始日は　%sで、終了日は %sです。".formatted(c.getName(), c.getStartDate(),
+									calculateMonths(c.getStartDate(), c.getMonths()))));
 
 		System.out.println("===Spring Frameworkコースを取っている生徒を表示する===");
-		students.stream().filter(s -> s.getCourseName(s.getCourse()).contains("Spring Framework"))
+		students.stream().filter(s -> s.getCoursesName(s.getCourses()).contains("Spring Framework"))
 				.forEach(s -> System.out.println("生徒の名前：　%s、年齢： %d歳".formatted(s.getName(), s.getAge())));
 
 		System.out.println("===生徒の基礎を表示する===");
-		students.forEach(s -> System.out.println("%sが　%sを勉強したことあります。".formatted(s.getName(), 
-							s.getBasicKnowledge().stream().map(Object::toString).collect(Collectors.joining("、")))));
+		students.forEach(s -> System.out.println("%sが　%sを勉強したことあります。".formatted(s.getName(),
+						 s.getBasicKnowledges().stream().map(Object::toString).collect(Collectors.joining("、")))));
 
 		System.out.println("===HTMLを勉強した生徒を表示する。===");
-		students.stream().filter(s -> s.getBasicKnowledge().contains("HTML"))
+		students.stream().filter(s -> s.getBasicKnowledges().contains("HTML"))
 				.forEach(s -> System.out.println("%s がHTMLを勉強したことあります。".formatted(s.getName())));
 
 		System.out.println("===生徒全員が30歳未満かチェックして表示する。===");
 		checkStudentsAreUnder30(students.stream().allMatch(s -> s.getAge() < 30));
 
 		System.out.println("===Hein Thantという名前の生徒がいるかチェックする。===");
-		checkStudentAttendingCourse(
-				students.stream().filter(s -> s.getName().equalsIgnoreCase("hein thant")).findAny().orElse(null));
+		checkStudentAttendingCourse(students.stream().filter(s -> s.getName().equalsIgnoreCase("hein thant")).findAny().orElse(null));
 
 		System.out.println("===Johnという名前の生徒がいるかチェックする。===");
-		checkStudentAttendingCourse(
-				students.stream().filter(s -> s.getName().equalsIgnoreCase("Thant")).findAny().orElse(null));
+		checkStudentAttendingCourse(students.stream().filter(s -> s.getName().equalsIgnoreCase("Thant")).findAny().orElse(null));
 	}
 
 	private static void checkStudentAttendingCourse(Student student) {
 		if (null != student) {
-			System.out.println("%s　は %s コースを取っています。".formatted(student.getName(), student.getCourseName(student.getCourse())));
+			System.out.println("%s　は %s コースを取っています。".formatted(student.getName(), student.getCoursesName(student.getCourses())));
 		} else {
 			System.out.println("その名前で授業を取っている生徒はいません。");
 		}
@@ -79,8 +76,8 @@ public class Main {
 
 		List<Student> studentList = List.of(
 				new Student("Hein Thant", List.of(c1, c2), 24, List.of("HTML", "CSS")),
-				new Student("Thidar", List.of(c3), 30, List.of("CSS")), 
-				new Student("Kyi Phyar", List.of(c1,c3), 26, List.of("CSS", "DataBase")),
+				new Student("Thidar", List.of(c3), 30, List.of("CSS")),
+				new Student("Kyi Phyar", List.of(c1, c3), 26, List.of("CSS", "DataBase")),
 				new Student("Zwe", List.of(c2), 20, List.of("HTML", "CSS", "Database")));
 
 		return studentList;

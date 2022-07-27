@@ -5,16 +5,16 @@ import java.util.stream.Collectors;
 public class Student {
 
 	private String name;
-	private List<Course> course;
+	private List<Course> courses;
 	private int age;
-	private List<String> basicKnowledge;
+	private List<String> basicKnowledges;
 
-	public Student(String name, List<Course> course, int age, List<String> basicKnowledge) {
+	public Student(String name, List<Course> courses, int age, List<String> basicKnowledge) {
 		super();
 		this.name = name;
-		this.course = course;
+		this.courses = courses;
 		this.age = age;
-		this.basicKnowledge = basicKnowledge;
+		this.basicKnowledges = basicKnowledge;
 	}
 
 	public String getName() {
@@ -25,12 +25,12 @@ public class Student {
 		this.name = name;
 	}
 
-	public List<Course> getCourse() {
-		return course;
+	public List<Course> getCourses() {
+		return courses;
 	}
 
-	public void setCourse(List<Course> course) {
-		this.course = course;
+	public void setCourse(List<Course> courses) {
+		this.courses = courses;
 	}
 
 	public int getAge() {
@@ -41,21 +41,21 @@ public class Student {
 		this.age = age;
 	}
 
-	public List<String> getBasicKnowledge() {
-		return basicKnowledge;
+	public List<String> getBasicKnowledges() {
+		return basicKnowledges;
 	}
 
-	public void setBasicKnowledge(List<String> basicKnowledge) {
-		this.basicKnowledge = basicKnowledge;
+	public void setBasicKnowledges(List<String> basicKnowledges) {
+		this.basicKnowledges = basicKnowledges;
 	}
 	
-	public String getCourseName(List<Course> course) {
-		return course.stream().map(Course::getName).collect(Collectors.joining("、"));
+	public String getCoursesName(List<Course> courses) {
+		return courses.stream().map(Course::getName).collect(Collectors.joining("、"));
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(age, course, basicKnowledge, name);
+		return Objects.hash(age, courses, basicKnowledges, name);
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public class Student {
 		if (getClass() != obj.getClass())
 			return false;
 		Student other = (Student) obj;
-		return age == other.age && Objects.equals(course, other.course) && Objects.equals(basicKnowledge, other.basicKnowledge)
+		return age == other.age && Objects.equals(courses, other.courses) && Objects.equals(basicKnowledges, other.basicKnowledges)
 				&& Objects.equals(name, other.name);
 	}
 
