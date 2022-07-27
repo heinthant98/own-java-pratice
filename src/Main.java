@@ -14,14 +14,14 @@ public class Main {
 		students.stream().map(Student::getCourses).forEach(s -> courses.add((s.get(0))));
 
 		System.out.println("===すべての学生を表示する===");
-		students.forEach(s -> System.out.println("生徒の名前： %s、コース：　%sを取っています。".formatted(s.getName(), s.getCoursesName(s.getCourses()))));
+		students.forEach(s -> System.out.println("生徒の名前： %s コース： %s".formatted(s.getName(), s.getCoursesName(s.getCourses()))));
 
 		System.out.println("===すべてのコースを表示する===");
-		courses.forEach(c -> System.out.println("コースの名前 : %s, 期間 : %dヶ月間。".formatted(c.getName(), c.getMonths())));
+		courses.forEach(c -> System.out.println("コースの名前: %s 期間: %dヶ月間".formatted(c.getName(), c.getMonths())));
 
 		System.out.println("===料金250,000チャット以下のコースを表示する===");
 		courses.stream().filter(c -> c.getFees() <= 250000)
-				.forEach(c -> System.out.println("%s　コースの料金は %sチャットです。".formatted(c.getName(), format.format(c.getFees()))));
+				.forEach(c -> System.out.println("%s コースの料金は %sチャットです。".formatted(c.getName(), format.format(c.getFees()))));
 
 		System.out.println("===コースの開始日と終了日を表示する===");
 		courses.forEach(c -> System.out.println("%sコースの開始日は　%sで、終了日は %sです。".formatted(c.getName(), c.getStartDate(),
@@ -29,7 +29,7 @@ public class Main {
 
 		System.out.println("===Spring Frameworkコースを取っている生徒を表示する===");
 		students.stream().filter(s -> s.getCoursesName(s.getCourses()).contains("Spring Framework"))
-				.forEach(s -> System.out.println("生徒の名前：　%s、年齢： %d歳".formatted(s.getName(), s.getAge())));
+				.forEach(s -> System.out.println("生徒の名前： %s 年齢： %d歳".formatted(s.getName(), s.getAge())));
 
 		System.out.println("===生徒の基礎を表示する===");
 		students.forEach(s -> System.out.println("%sが　%sを勉強したことあります。".formatted(s.getName(),
@@ -51,7 +51,7 @@ public class Main {
 
 	private static void checkStudentAttendingCourse(Student student) {
 		if (null != student) {
-			System.out.println("%s　は %s コースを取っています。".formatted(student.getName(), student.getCoursesName(student.getCourses())));
+			System.out.println("%sは %s コースを取っています。".formatted(student.getName(), student.getCoursesName(student.getCourses())));
 		} else {
 			System.out.println("その名前で授業を取っている生徒はいません。");
 		}

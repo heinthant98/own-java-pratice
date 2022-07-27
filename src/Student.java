@@ -50,7 +50,7 @@ public class Student {
 	}
 	
 	public String getCoursesName(List<Course> courses) {
-		return courses.stream().map(Course::getName).collect(Collectors.joining("、"));
+		return courses.stream().map(Course::getName).collect(Collectors.joining("/"));
 	}
 
 	@Override
